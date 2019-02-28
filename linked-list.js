@@ -201,6 +201,22 @@ function findPrevious(list, item){
   return new Error('The item is not in the list');
 }
 
+function findLast(list){
+  if(list.head === null){
+    return new Error('The list is empty');
+  } else {
+  
+  let tempNode = list.head;
+  while(tempNode){
+    if(tempNode.next === null){
+      return tempNode;
+    }
+    tempNode = tempNode.next;
+  }
+  return new Error('Somehow, this list never ends.')
+  }
+}
+
   
 function main(){
   const SLL = new LinkedList();
@@ -224,6 +240,8 @@ function main(){
   // console.log(findPrevious(SLL, 'Tauhida')); //want to get an error (not in list)
   // console.log(findPrevious(SLL, 'Apollo')); //want to get an error
   // console.log(findPrevious(empty, 'Does not matter'));
+  // console.log(findLast(SLL)); //expect to find Starbuck
+  // console.log(findLast(empty)); //expect to get an error
 }
 
 main();
