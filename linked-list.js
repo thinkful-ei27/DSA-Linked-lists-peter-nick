@@ -49,8 +49,50 @@ class LinkedList {
       }
       return new Error('That node does not exist');
     }
-
   }
+
+  insertAfter(newItem, nodeVal){
+    //check if head is null
+    if(this.head === null){
+      return new Error('Nothing in list');
+    } else {
+      let tempNode = this.head;
+      let prevNode = this.head;
+      // Change newItem, we have to place our newItem after it by newItem(next === that node)
+      while (tempNode) {
+        if (tempNode.value === nodeVal) {
+          prevNode = tempNode;
+          tempNode = tempNode.next;
+          prevNode.next = new _Node(newItem, tempNode);
+          return;
+        }
+        prevNode = tempNode;
+        tempNode = tempNode.next;
+      }
+      return new Error('That node does not exist');
+    }
+  }
+
+  insertAt(newItem, pos){
+    if(this.head === null){
+      return new Error('Nothing in list');
+    } else {
+      let i = 1; //counter variable
+      let tempNode = this.head;
+      let prevNode = this.head;
+      while(tempNode){
+        if(i === pos){
+          prevNode.next = new _Node(newItem, tempNode);
+          return;
+        }
+      i = i + 1;
+      prevNode = tempNode;
+      tempNode = tempNode.next;
+      }
+    }
+    return new Error('The list is not that long')
+  }
+
 
   find(item) {
     // start at the head
@@ -113,7 +155,9 @@ function main(){
   SLL.insertLast('Starbuck');
   SLL.insertLast('Tauhida');
   SLL.removal('squirrel');
-  
+  SLL.insertBefore('Athena', 'Boomer');
+  SLL.insertAfter('Hotdog', 'Helo');
+  SLL.insertAt('Kat', 3);
 }
 
 main();
