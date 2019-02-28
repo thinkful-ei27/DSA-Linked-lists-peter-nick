@@ -206,15 +206,45 @@ function findLast(list){
     return new Error('The list is empty');
   } else {
   
-  let tempNode = list.head;
-  while(tempNode){
-    if(tempNode.next === null){
-      return tempNode;
+    let tempNode = list.head;
+    while(tempNode){
+      if(tempNode.next === null){
+        return tempNode;
+      }
+      tempNode = tempNode.next;
     }
-    tempNode = tempNode.next;
+    return new Error('Somehow, this list never ends.');
   }
-  return new Error('Somehow, this list never ends.')
+}
+
+// Reverse a Linked List -- Must be O(n)
+function reverseList (list) {
+  let tempNode = list.head;
+  let prevNode = null;
+  let nextNode = list.head.next;
+  // Handle if list is empty
+  if (list.head === null) {
+    return new Error('This list is empty');
   }
+  // Handle if there is only one item in the list
+  if (tempNode.next === null) {
+    return list;
+  }
+
+  while (nextNode) {
+    tempNode.next = prevNode;
+    
+    prevNode = tempNode;
+
+    tempNode = nextNode;
+
+    nextNode = nextNode.next;
+
+  }
+  tempNode.next = prevNode;
+  list.head = tempNode;
+  return list;
+
 }
 
   
@@ -242,6 +272,8 @@ function main(){
   // console.log(findPrevious(empty, 'Does not matter'));
   // console.log(findLast(SLL)); //expect to find Starbuck
   // console.log(findLast(empty)); //expect to get an error
+  console.log(reverseList(SLL));
+  console.log(display(SLL));
 }
 
 //Mystery Program Analysis: This program is going through the entire Linked List to remove duplicates 
