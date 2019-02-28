@@ -264,6 +264,26 @@ function thirdFromEnd(list){
   return thirdEndNode;
 }
 
+function middle(list) {
+  let tempNode = list.head;
+  let i = 1;
+  let answer = list.head;
+  if(list.head === null){
+    return new Error('List is empty');
+  }
+  if (list.head.next === null) {
+    return new Error('List only has one item');
+  }
+  while (tempNode.next !== null) {
+    i = i + 1;
+    if (i % 2 === 0) {
+      answer = answer.next;
+    }
+    tempNode = tempNode.next;
+  }
+  return answer;
+}
+
   
 function main(){
   const SLL = new LinkedList();
@@ -291,7 +311,9 @@ function main(){
   // console.log(findLast(empty)); //expect to get an error
   // console.log(reverseList(SLL));
   // console.log(display(SLL));
-  console.log(thirdFromEnd(SLL));
+  // console.log(thirdFromEnd(SLL));
+  console.log(middle(SLL));
+  
 }
 
 //Mystery Program Analysis: This program is going through the entire Linked List to remove duplicates 
