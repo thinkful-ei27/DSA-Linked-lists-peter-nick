@@ -85,12 +85,12 @@ class LinkedList {
           prevNode.next = new _Node(newItem, tempNode);
           return;
         }
-      i = i + 1;
-      prevNode = tempNode;
-      tempNode = tempNode.next;
+        i = i + 1;
+        prevNode = tempNode;
+        tempNode = tempNode.next;
       }
     }
-    return new Error('The list is not that long')
+    return new Error('The list is not that long');
   }
 
 
@@ -145,6 +145,35 @@ class LinkedList {
     prevNode.next = tempNode.next;
   }
 }
+
+function display(list) {
+  if (list.head === null) {
+    return new Error('The list is empty');
+  }
+  const results = [];
+  let tempNode = list.head;
+  while (tempNode.next !== null) {
+    results.push(tempNode.value);
+    tempNode = tempNode.next;
+  }
+  results.push(tempNode.value);
+  return results;
+}
+
+function size(list) {
+  let counter = 1;
+  if (list.head === null) {
+    return 0;
+  }
+  let tempNode = list.head;
+  while(tempNode.next !== null) {
+    counter = counter + 1;
+    tempNode = tempNode.next;
+  }
+  return counter;
+}
+
+
   
 function main(){
   const SLL = new LinkedList();
@@ -158,6 +187,9 @@ function main(){
   SLL.insertBefore('Athena', 'Boomer');
   SLL.insertAfter('Hotdog', 'Helo');
   SLL.insertAt('Kat', 3);
+  SLL.removal('Tauhida');
+  console.log(display(SLL));
+  console.log(size(SLL));
 }
 
 main();
