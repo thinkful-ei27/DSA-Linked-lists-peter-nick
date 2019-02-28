@@ -11,8 +11,15 @@ class LinkedList {
   constructor() {
     this.head = null;
   }
-  
 
+  
+  //TESTING PURPOSES ONLY!
+  insert(item, next){
+    if(this.head === null){
+      this.head = new _Node(item, this.head);
+    }
+    new _Node(item, next);
+  }
   insertFirst(item) {
     this.head = new _Node(item, this.head);
   }
@@ -160,6 +167,20 @@ function display(list) {
   return results;
 }
 
+function copy(list) {
+  if (list.head === null) {
+    return new Error('The list is empty');
+  }
+  let copiedList = new LinkedList();
+  let tempNode = list.head;
+  while (tempNode.next !== null) {
+    copiedList.insertLast(tempNode.value);
+    tempNode = tempNode.next;
+  }
+  copiedList.insertLast(tempNode.value);
+  return copiedList;
+}
+
 function size(list) {
   let counter = 1;
   if (list.head === null) {
@@ -264,7 +285,6 @@ function thirdFromEnd(list){
   return thirdEndNode;
 }
 
-// Middle - Find a node in the middle of a linked list.
 function middle(list) {
   let tempNode = list.head;
   let i = 1;
@@ -285,12 +305,26 @@ function middle(list) {
   return answer;
 }
 
-// Cycle in a list - Test to see if a linked list has a cycle 
-// (i.e. whether a node in the list has its next value pointing to an earlier node in the list)
-function cycleInList(list) {
-  const fakeNode = 'FakeNode';
-  
+function checkCycleList(list) {
+  if(list.head === null){
+    return new Error('List is empty');
+  }
+  //So we don't mutate original list
+  let tempList = copy(list);
+  let fakeNode = 'fake';
+  let tempNode = tempList.head;
+  let prevNode = null;
+  while(tempNode.next !== null){
+    if(tempNode.next === 'fake'){
+      return true;
+    }
+    prevNode = tempNode;
+    tempNode = tempNode.next;
+    prevNode.next = fakeNode;
+  }
+  return false;
 }
+
   
 function main(){
   const SLL = new LinkedList();
@@ -305,11 +339,13 @@ function main(){
   SLL.insertAfter('Hotdog', 'Helo');
   SLL.insertAt('Kat', 3);
   SLL.removal('Tauhida');
-  console.log(display(SLL));
-  console.log(size(SLL));
-  console.log(isEmpty(SLL));
-  const empty = new LinkedList();
-  console.log(isEmpty(empty));
+  // console.log(checkCycleList(SLL));
+  // console.log(checkCycleList(cycleList));
+  // console.log(display(cycleList));
+  // console.log(size(SLL));
+  // console.log(isEmpty(SLL));
+  // const empty = new LinkedList();
+  // console.log(isEmpty(empty));
   // console.log(findPrevious(SLL, 'Helo')); //want to find Boomer
   // console.log(findPrevious(SLL, 'Tauhida')); //want to get an error (not in list)
   // console.log(findPrevious(SLL, 'Apollo')); //want to get an error
@@ -319,9 +355,16 @@ function main(){
   // console.log(reverseList(SLL));
   // console.log(display(SLL));
   // console.log(thirdFromEnd(SLL));
-  console.log(middle(SLL));
+  // console.log(middle(SLL));
+
   
 }
+
+// insert(item, next){
+//   if(this.head === null){
+//     this.head = new _Node(item, this.head);
+//   }
+//   new _Node(item, next);
 
 //Mystery Program Analysis: This program is going through the entire Linked List to remove duplicates 
 //by resetting the pointers to skip over any duplicate values in the list.
