@@ -29,6 +29,19 @@ class LinkedList {
     }
   }
 
+  insertBefore(item){
+    //check if head is null
+    if(this.head === null){
+      this.insertFirst(item);
+    } else {
+      let tempNode = this.head;
+      let prevNode = this.head;
+      //Change item, we have to place our item before it by item(next === that node)
+      //Item before the above item also needs to have its next changed
+    }
+    
+  }
+
   find(item) {
     // start at the head
     let tempNode = this.head;
@@ -81,3 +94,16 @@ class LinkedList {
   }
 }
   
+function main(){
+  const SLL = new LinkedList();
+  SLL.insertLast('Apollo');
+  SLL.insertLast('Boomer');
+  SLL.insertLast('Helo');
+  SLL.insertLast('Husker');
+  SLL.insertLast('Starbuck');
+  SLL.insertLast('Tauhida');
+  SLL.removal('squirrel');
+  
+}
+
+main();
