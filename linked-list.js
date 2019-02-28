@@ -230,21 +230,38 @@ function reverseList (list) {
   if (tempNode.next === null) {
     return list;
   }
-
   while (nextNode) {
     tempNode.next = prevNode;
-    
     prevNode = tempNode;
-
     tempNode = nextNode;
-
     nextNode = nextNode.next;
-
   }
   tempNode.next = prevNode;
   list.head = tempNode;
   return list;
+}
 
+//Third from the end (DON'T ADD LENGTH), runtime O(n)
+
+function thirdFromEnd(list){
+  if(list.head === null){
+    return new Error('List is empty');
+  }
+  if(list.head.next === null){
+    return new Error('List only has one item');
+  }
+  if(list.head.next.next === null){
+    return new Error('List only has two items');
+  }
+  let tempNode = list.head;
+  let prevNode = null;
+  let thirdEndNode = null;
+  while(tempNode.next){
+    thirdEndNode = prevNode;
+    prevNode = tempNode;
+    tempNode = tempNode.next;
+  }
+  return thirdEndNode;
 }
 
   
@@ -272,8 +289,9 @@ function main(){
   // console.log(findPrevious(empty, 'Does not matter'));
   // console.log(findLast(SLL)); //expect to find Starbuck
   // console.log(findLast(empty)); //expect to get an error
-  console.log(reverseList(SLL));
-  console.log(display(SLL));
+  // console.log(reverseList(SLL));
+  // console.log(display(SLL));
+  console.log(thirdFromEnd(SLL));
 }
 
 //Mystery Program Analysis: This program is going through the entire Linked List to remove duplicates 
