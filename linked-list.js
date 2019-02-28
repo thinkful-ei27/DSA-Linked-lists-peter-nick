@@ -173,6 +173,33 @@ function size(list) {
   return counter;
 }
 
+function isEmpty(list) {
+  if(list.head === null){
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function findPrevious(list, item){
+  if(list.head === null){
+    return new Error('The list is empty');
+  } else {
+    let prevNode = list.head;
+    let tempNode = list.head;
+    if(tempNode.value === item){
+      return new Error('There is nothing before this item');
+    }
+    while(tempNode){
+      if(tempNode.value === item){
+        return prevNode;
+      }
+      prevNode = tempNode;
+      tempNode = tempNode.next;
+    }
+  }
+  return new Error('The item is not in the list');
+}
 
   
 function main(){
@@ -190,6 +217,13 @@ function main(){
   SLL.removal('Tauhida');
   console.log(display(SLL));
   console.log(size(SLL));
+  console.log(isEmpty(SLL));
+  const empty = new LinkedList();
+  console.log(isEmpty(empty));
+  // console.log(findPrevious(SLL, 'Helo')); //want to find Boomer
+  // console.log(findPrevious(SLL, 'Tauhida')); //want to get an error (not in list)
+  // console.log(findPrevious(SLL, 'Apollo')); //want to get an error
+  // console.log(findPrevious(empty, 'Does not matter'));
 }
 
 main();
