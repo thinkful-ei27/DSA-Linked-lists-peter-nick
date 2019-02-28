@@ -29,17 +29,27 @@ class LinkedList {
     }
   }
 
-  insertBefore(item){
+
+  insertBefore(newItem, nodeVal){
     //check if head is null
     if(this.head === null){
-      this.insertFirst(item);
+      return new Error('Nothing in list');
     } else {
       let tempNode = this.head;
       let prevNode = this.head;
-      //Change item, we have to place our item before it by item(next === that node)
-      //Item before the above item also needs to have its next changed
+      // Change newItem, we have to place our newItem before it by newItem(next === that node)
+      // newItem before the above newItem also needs to have its next changed
+      while (tempNode) {
+        if (tempNode.value === nodeVal) {
+          prevNode.next = new _Node(newItem, tempNode);
+          return;
+        }
+        prevNode = tempNode;
+        tempNode = tempNode.next;
+      }
+      return new Error('That node does not exist');
     }
-    
+
   }
 
   find(item) {
