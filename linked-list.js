@@ -264,6 +264,7 @@ function thirdFromEnd(list){
   return thirdEndNode;
 }
 
+// Middle - Find a node in the middle of a linked list.
 function middle(list) {
   let tempNode = list.head;
   let i = 1;
@@ -284,6 +285,12 @@ function middle(list) {
   return answer;
 }
 
+// Cycle in a list - Test to see if a linked list has a cycle 
+// (i.e. whether a node in the list has its next value pointing to an earlier node in the list)
+function cycleInList(list) {
+  const fakeNode = 'FakeNode';
+  
+}
   
 function main(){
   const SLL = new LinkedList();
