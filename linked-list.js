@@ -244,4 +244,9 @@ function main(){
   // console.log(findLast(empty)); //expect to get an error
 }
 
+//Mystery Program Analysis: This program is going through the entire Linked List to remove duplicates 
+//by resetting the pointers to skip over any duplicate values in the list.
+//Runtime: O(n^2) maybe?
+
 main();
+
